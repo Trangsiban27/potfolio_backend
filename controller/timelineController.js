@@ -109,3 +109,14 @@ export const deleteTimeLine = catchAsyncErrors(async (req, res, next) => {
     message: "Timeline Deleted!",
   });
 });
+
+export const getTimeline = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+
+  const timeline = await TimeLine.findById(id);
+
+  res.status(200).json({
+    success: true,
+    timeline,
+  });
+});

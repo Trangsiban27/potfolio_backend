@@ -88,7 +88,7 @@ export const getAllSkill = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const deleteSkill = catchAsyncErrors(async (req, res, next) => {
-  const { id } = req.params.id;
+  const { id } = req.params;
 
   const skill = await Skill.findById(id);
 
@@ -97,5 +97,18 @@ export const deleteSkill = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: "Skill Deleted!",
+  });
+});
+
+export const getSkill = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params;
+
+  console.log(id);
+
+  const skill = await Skill.findById(id);
+
+  res.status(200).json({
+    success: true,
+    skill,
   });
 });
